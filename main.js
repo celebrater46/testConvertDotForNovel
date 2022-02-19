@@ -9,24 +9,13 @@ const convertDot = (line) => {
     let i = 0;
     while(str.search(/《《[^》]+》》/) > -1){
         const chars = str.match(/《《[^》]+》》/);
-        // console.log("chars: " + chars);
         let converted = "";
-        // console.log("chars.length: " + chars.length);
-        console.log("chars.length: " + chars[0].length); // match() returns not String but Array
-        // for(let j = 2; j < chars.length - 2; j++){
-        for(let j = 2; j < chars[0].length - 2; j++){
-            console.log("converted: " + converted);
+        for(let j = 2; j < chars[0].length - 2; j++){ // match() returns not String but Array
             converted += "<ruby><rb>";
             converted += chars[0].substr(j, 1);
             converted += "</rb><rp>(</rp><rt>・</rt><rp>)</rp></ruby>";
         }
         str = str.replace(/《《[^》]+》》/, converted);
-        console.log("str: " + str);
-        i++;
-        if(i > 1000){
-            console.log("endless loop occurred!");
-            break;
-        }
     }
     return str;
 }
